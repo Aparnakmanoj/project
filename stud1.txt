@@ -1,0 +1,8 @@
+Ammu,Thomas,ammmu@gmail.com,8078457814,A,2020-2022
+Hina,Elza,hina@gmail.com,7559804450,A,2020-2022
+Amal,Philip,amal@gmail.com,9447448065,B,2020-2022
+Elza,John,elzagmail.com,8236541785,B,2020-2022
+Adhithi,Manoj,adhi@gmail.com,9885445216,B,2020-2022
+Aegis,James,aegis@gmail.com,8954675236,A,2020-2022
+Arya,Mahesh,arya@gmail.com,9225447569,B,2020-2022
+George,Thomas,geo@gmail.com,9897885426,A,2020-2022
