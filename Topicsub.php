@@ -101,7 +101,6 @@ if($getid!=0)
       </div>
 
       <!-- Sidebar Menu -->
-      <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
@@ -135,30 +134,6 @@ if($getid!=0)
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Project Topic
-              </p>
-            </a>
-          </li>
-            <li class="nav-item">
-            <a href="projectstatus.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Project Status
-              </p>
-            </a>
-          </li>
-            <li class="nav-item">
-            <a href="vremark.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                View Remarks
-              </p>
-            </a>
-          </li>
-            <li class="nav-item">
-            <a href="viewresult.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                View Marks
               </p>
             </a>
           </li>
@@ -198,15 +173,14 @@ if($getid!=0)
 <?php
 
 //use session to collect the current student;
- $mx=mysqli_query($conn,"select tid,studid from tbl_studreg where email='$getid'");
+ $mx=mysqli_query($conn,"select tid,studid from tbl_studreg where email='hina@gmail.com'");
     $nos=mysqli_fetch_array($mx);
 	$res=mysqli_query($conn,"select name from tbl_teachteg where teachid='$nos[0]'");
 		$row=mysqli_fetch_array($res);
 if(isset($_POST['Submit']))
 {
-	$topic=$_POST['t2'];?>
-	<h2>Entered Topic :<?php echo $topic; ?> </h2>
-      <?php
+	$topic=$_POST['t2'];
+	echo $topic; 
 	$res2=mysqli_query($conn,"select * from tbl_topic  where stid='$nos[1]'");
 	$row2=mysqli_fetch_array($res2);
 	if($row2==null)
