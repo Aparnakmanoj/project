@@ -1,8 +1,9 @@
 <?php
 include "../connect.php";
 $getid=$_SESSION['username'];
-
-if($getid!=0)
+$q=mysqli_query($conn,"select * from tbl_studreg where email='$getid'");
+$data=mysqli_fetch_array($q);
+if($getid!='')
 {
   
 ?>
@@ -85,8 +86,8 @@ if($getid!=0)
         <div class="image">
         </div>
         <div class="info">
-          <a href="#" class="d-block" style="margin-top: -12px">HOD</a>
-         <a href="#" style="color: #239db1; font-size: 15px"><i class="fa fa-circle text-primary" style="font-size: 13px;"></i>ADMIN</a>
+          <a href="#" class="d-block" style="margin-top: -12px">STUDENT</a>
+         <a href="#" style="color: #239db1; font-size: 15px"><i class="fa fa-circle text-primary" style="font-size: 13px;"></i><?php echo $data['name'];?></a>
         </div>
 
       </div>
@@ -136,6 +137,14 @@ if($getid!=0)
               </p>
             </a>
           </li>
+           <li class="nav-item">
+            <a href="paystatus.php" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Payment Status
+              </p>
+            </a>
+          </li>
             <li class="nav-item">
             <a href="vremark.php" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -179,7 +188,7 @@ if($getid!=0)
     $sql=mysqli_query($conn,"select * from tbl_studreg where email= '$getid'");
       while ($row = mysqli_fetch_array($sql)) {
     
-    $team=$row['tid'];
+    $team=$row['gid'];
          
     $sql2=mysqli_query($conn,"select * from tbl_teachteg where teachid= '$team'");
            if(mysqli_num_rows($sql2)>0){ 
@@ -429,13 +438,7 @@ if($getid!=0)
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Footer <a href="">ARMPMS</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Footer</b>
-    </div>
-  </footer>
+  
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
