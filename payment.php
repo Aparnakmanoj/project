@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -27,23 +27,20 @@
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
-     
+    
+    
     <?php
 
 include "../connect.php";
 
  $getid=$_SESSION['username'];
 
- 
-$sql2 = mysqli_query($conn,"select * from tbl_studreg where email='$getid'");
-    
+$sql2 = mysqli_query($conn,"select * from tbl_teachteg where email='$getid' and costatus=1");
 if($getid!='')
 {
   
-
-  
 ?>
+<div class="wrapper">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -76,7 +73,7 @@ if($getid!='')
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="" class="brand-link">
+   <a href="" class="brand-link">
       <img src="../images/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">ARMPMS</span>
     </a>
@@ -86,22 +83,22 @@ if($getid!='')
       <!-- Sidebar user panel (optional) -->
    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-             <?php
+          </div>
+       <?php
     
     while ($row2 = mysqli_fetch_array($sql2)) 
     {
     
-    $stid=$row2['studid'];
+    
     ?>
-      </div>
         <div class="info">
-           <a href="#" class="d-block" style="margin-top: -12px"><?php  echo $row2['name']." ".$row2['lname'];?></a>
-         <a href="#" style="color: #239db1; font-size: 15px"><i class="fa fa-circle text-primary" style="font-size: 13px;"></i> Student</a>
+          <a href="#" class="d-block" style="margin-top: -12px"><?php  echo $row2['name']." ".$row2['lname'];}?></a>
+         <a href="#" style="color: #239db1; font-size: 15px"><i class="fa fa-circle text-primary" style="font-size: 13px;"></i>Coordinator </a>
         </div>
 
       </div>
 
-    <!-- Sidebar Menu -->
+      <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
@@ -114,64 +111,96 @@ if($getid!='')
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="viewnotification.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+            <li class="nav-item">
+            <a href="studentd.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                Notifications
+                Add Students
               </p>
             </a>
           </li>
-            <li class="nav-item">
-            <a href="guide.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+<!--          <li class="nav-item">
+            <a href="addstud.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                 Team Guide
+                Add Students
               </p>
             </a>
-          </li>
-            <li class="nav-item">
-            <a href="Topicsub.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+          </li>-->
+             <li class="nav-item">
+            <a href="team.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                Project Topic
-              </p>
-            </a>
-          </li>
-            <li class="nav-item">
-            <a href="projectstatus.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Project Status
+                Guide Assignment
               </p>
             </a>
           </li>
            <li class="nav-item">
-            <a href="paystatus.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+               <a href="view.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                Payment Status
+                View Students
               </p>
             </a>
           </li>
             <li class="nav-item">
-            <a href="vremark.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+                 <a href="slotdetails.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                View Remarks
+                Staff Slot Details
               </p>
             </a>
           </li>
-            <li class="nav-item">
-            <a href="viewresult.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+             
+          <li class="nav-item">
+            <a href="payment.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                View Marks
+                Payment Details
+              </p>
+            </a>
+          </li>
+             <li class="nav-item">
+            <a href="viewmarks.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Marklist Approval
               </p>
             </a>
           </li>
           <li class="nav-item">
-         
+            <a href="scrum.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                SCRUM
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="pannel.php" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                PANEL
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="notification.php" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Updates
+              </p>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a href="noti.php" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                View Updates
+              </p>
+            </a>
+          </li>
+          
            <li class="nav-item">
             <a href="../logout.php" class="nav-link">
               <i class="nav-icon fas fa-power-off"></i>
@@ -185,6 +214,7 @@ if($getid!='')
     </div>
     <!-- /.sidebar -->
   </aside>
+
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -192,50 +222,62 @@ if($getid!='')
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-           
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
+         
       </div><!-- /.container-fluid -->
     </div>
-<title>Untitled Document</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-</head>
+    <!-- /.content-header -->
 
+<?php
+
+ //session_start();
+ 
+ 
+
+?>
 <body>
-  
-
-
-
-
-<center>
-<form name="form1" method="POST" action="">
-<center><h1>ADD PAYMENT</h1>
-  <table>
-    <tr>
-<td>Account Holder Name:</td><td><input type="text" name="n" value="<?php echo $row2['name'];?>"></td>
-<td>Account Number:</td><td><input type="number" name="n1" id="n1" onchange="AccValidate()" ></td>
-<td>Card Type:</td><td><select name="ctype">
-<option>SELECT</option>
-<option value="Master">MASTER</option>
-<option value="VISA">VISA</option>
-
-</select></td>
-<td>CVV:</td><td><input type="number" name="cvv" id="cvv" onchange="cvvValidate()"></td>
-<td>AMOUNT:</td><td><input type="number" name="amount" value=""></td>
-<td>PaymentDate:</td><td><input type="date" name="date"></td>
-
-<td><input type="submit" name="send" value="PAYMENT"></td>
-</tr>
-
+ 
+<h1>Payment Details
+<table class="table table-bordered table-striped" border="1">
+<th> STUDENT NAME</th>
+<th>BATCH</th>
+<th>TOPICNAME</th>
+<th>AMOUNT</th>
+<th>DATE OF PAYMENT</th>
+<th>STATUS</th>
+<!-- <th>ACTION</th> -->
+<?php
+	  $query = mysqli_query($conn, "SELECT a.name, a.lname, a.batch, IFNULL(c.ptopic, 'Topic not approved') as ptopic, IFNULL(p.amount, 'N/A') as amount, IFNULL(p.dateanddtime, 'N/A') as dateanddtime
+    FROM tbl_studreg a
+    LEFT JOIN tbl_topic c ON a.studid = c.stid
+    LEFT JOIN tbl_payment p ON a.studid = p.student_id
+    
+    ");
+  while($fetch = mysqli_fetch_assoc($query)){
+	
+	?>
+    <tr> 
+      <td width="218" height="70"><?php echo $fetch['name']." ".$fetch['lname'];?></td>
+      <td width="261">&nbsp;<?php echo $fetch['batch'];?></td>
+       <td width="261">&nbsp;<?php echo $fetch['ptopic'];?></td>
+        <td width="261">&nbsp;<?php echo $fetch['amount'];?></td>
+      <td width="261">&nbsp;<?php echo $fetch['dateanddtime'];?></td>
+       <td width="261">&nbsp;<?php if($fetch['amount'] != 'N/A'){echo "Paid";}else{echo "Not Paid";} ?></td>
+	  <!-- <td ><a class="btn btn-info" href="paystatus.php?id=<?php echo $ds['ptid'];?>">SEND PAYMENT STATUS</a></td> -->
+	  
+    </tr>
+    <?php
+  }
+	?>
 </table>
-</center>
-</form>
 
+
+
+</br>
+	</br></br>
+	</br>
+
+<?php
+}
+?>
 </body>
 </html>
