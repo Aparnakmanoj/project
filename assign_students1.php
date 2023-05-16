@@ -1,54 +1,16 @@
 <?php
   include "../connect.php";
- $getid=$_SESSION['username'];
-$id=$_GET['id'];
-
-//if($getid!=0)
-//{
-  
-if(isset($_POST['Submit']))
-{
-
-$a=$_POST['staffid'];
-
-$b=$_POST['staffid2'];
-$query2=mysqli_query($conn,"select * from tbl_studreg where studid='$id'");
-$d=mysqli_fetch_array($query2);
-$data=$d['gid'];
-if($_POST['staffid']==$_POST['staffid2'])
-{
-
-
-  echo'<script>alert("SELECTED STAFF NAMES ARE SAME!!PLEASE CHOOSE ANOTHER ONE")</script>';
-}
-if($data==$a)
-{
-
-echo'<script>alert("SORRY!!INVALID Selection,selected teacher is a guide of the student")</script>';
-}
-else if($data==$b){
-
-echo'<script>alert("SORRY!!INVALID Selection,selected teacher is a guide of the student")</script>';
-}
-else{
-
-
-$qcx=mysqli_query($conn,"update tbl_studreg set tid='$a',tid1='$b',ptype='p' where studid='$id'");
-echo'<script>alert("Panel allocation done successfully");window.location.href="assign_students.php";</script>';
-}
-}
-
-
  
-  
- 
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ARMPMS</title>
+  <title>Project Management System </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -74,23 +36,17 @@ echo'<script>alert("Panel allocation done successfully");window.location.href="a
 <body class="hold-transition sidebar-mini layout-fixed">
     
     
-    
     <?php
 
 
 
-$sql2 = mysqli_query($conn,"select * from tbl_teachteg where email='$getid'");
- 
-      
+ $getid=$_SESSION['username'];
+
+$sql2 = mysqli_query($conn,"select * from tbl_teachteg where email='$getid' and costatus=1");
 if($getid!='')
 {
   
-?>   
-    
-    
-    
-    
-    
+?>
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -124,7 +80,7 @@ if($getid!='')
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="" class="brand-link">
+   <a href="" class="brand-link">
       <img src="../images/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">ARMPMS</span>
     </a>
@@ -134,31 +90,25 @@ if($getid!='')
       <!-- Sidebar user panel (optional) -->
    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          </div>
-       
-        <?php
+        </div>
+       <?php
     
     while ($row2 = mysqli_fetch_array($sql2)) 
     {
-     $r=$row2['teachid']
-  
+    
     
     ?>
-       
-       
         <div class="info">
           <a href="#" class="d-block" style="margin-top: -12px"><?php  echo $row2['name']." ".$row2['lname'];}?></a>
-         <a href="#" style="color: #239db1; font-size: 15px"><i class="fa fa-circle text-primary" style="font-size: 13px;"></i>Faculty</a>
+         <a href="#" style="color: #239db1; font-size: 15px"><i class="fa fa-circle text-primary" style="font-size: 13px;"></i>Coordinator </a>
         </div>
 
       </div>
 
       <!-- Sidebar Menu -->
-       <!-- Sidebar Menu -->
-    
-       <nav class="mt-2">
+      <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          Add icons to the links using the .nav-icon class
+          <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
             <a href="dashboard.php" class="nav-link active">
@@ -234,22 +184,13 @@ if($getid!='')
               </p>
             </a>
           </li>
-      </nav><!--
-
-
-
-
-
-
-
-
-
-
-
+      </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
+
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -257,159 +198,123 @@ if($getid!='')
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-           
+            <h1>ASSIGN STUDENTS</h1>
           </div>
-          
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Assign Students</li>
+            </ol>
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
     </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+       
+
+            <div class="card">
+              <div class="card-header">
+                
+                
+                            
+              <!-- /.card-header -->
+                            
+<?php
+ 
+ if(isset($_POST['Submit']))
+ {
+	
+	 $s=$_POST['select1'];
+     
+ }
+ 
+ 
+?>
+
+<form name="form1" method="post" action="">
+<CENTER>
+    <h3>
+<label>NUMBER OF STUDENTS : </label>
     
-             
-             <div class="form-group">
-                 <form method="POST">
-<center>
-             <table width="54%" border="0">
-        <tr> 
-            <h4 class="modal-title">ASSIGN Faculty</h4>
-          <td>CHOOSE FACULTY(1):</td><td height="28"></TD>
-
-        <td><select name="staffid" required="">
-            <option>SELECT</option>
-<?php
-
-
-$q=mysqli_query($conn,"SELECT tbl_slot.Tid,tbl_teachteg.teachid,tbl_teachteg.name FROM tbl_slot INNER JOIN tbl_teachteg ON tbl_slot.Tid= tbl_teachteg.teachid where status1='Accepted'");
-while($d=mysqli_fetch_array($q))
-{
-
+<?php if(isset($no_of_std)) echo $no_of_std ;  else $no_of_std='0';?>
+    <br>
+    <label>FACULTY  : </label>
     
-$ds=$d['teachid'];
-$qd=mysqli_query($conn,"select * from tbl_teachteg where teachid='$ds'");
-$da=mysqli_fetch_array($qd);
+<?php if(isset($s)) echo $s ;  else $s='0';?>
+        </h3>
+    </CENTER>
+<br>
 
-?>
-<option value="<?php echo $da['teachid'];?>"><?php echo $d['name'];?></option>
-
-
-        
-<?php
+		  
 
 
-}
+<br>
 
-?></select>
-    </td>
-        </tr>
-
-
-
-        <td>CHOOSE FACULTY(2):</td><td height="28"></TD>
-
-        <td><select name="staffid2" required="">
-            <option>SELECT</option>
-<?php
-
-
-$q=mysqli_query($conn,"SELECT tbl_slot.Tid,tbl_teachteg.teachid,tbl_teachteg.name FROM tbl_slot INNER JOIN tbl_teachteg ON tbl_slot.Tid= tbl_teachteg.teachid where status1='Accepted'");
-while($d=mysqli_fetch_array($q))
-{
-
-    
-$ds=$d['teachid'];
-$qd=mysqli_query($conn,"select * from tbl_teachteg where teachid='$ds'");
-$da=mysqli_fetch_array($qd);
-
-?>
-<option value="<?php echo $da['teachid'];?>"><?php echo $d['name'];?></option>
-
-
-        
-<?php
-
-
-}
-
-?></select>
-    </td>
-        </tr>
-        
-		<tr> 
-          
-          
-                               <div class="form-group">
-                                  
-        <tr> 
-            <center>
-          <td><input type="submit" class="btn btn-primary" name="Submit" value="Submit"></td>
-            </center>
-        </tr>
-      </table>
-    </center>
-
-</FORM><br><br><br>
-<center>
-     <h1>Faculty Available Time Sheets</h1>
-<table id="example1" class="table table-bordered table-striped">
-                  <thead>
-<th>Faculty Name</th>
-
-
-<th>Available Date</th>
-
-<th>Available Hour</th>
-
-
-
-    </thead>
-
-<?php
-$q=mysqli_query($conn,"select * from tbl_slot where status1='Accepted'");
-while($d=mysqli_fetch_array($q))
-{
-$user=$d['Tid'];
-$gd=mysqli_query($conn,"select * from tbl_teachteg where teachid='$user'");
-$datas=mysqli_fetch_array($gd);
-?>
-<tr>
-<td><?php echo $datas['name'];?></td>
-<td><?php echo $d['avail_date'];?></td>
-
-<td><?php echo $d['Slot_type'];?></td>
-<td></td>
-
-
-
-
-
-</tr>
-  <?php
-
-}
-?>
-
-
-
-
-
-
-
-
-               
-                    </div>
-                    </div>
-</body>
-</html>
-               </table>
-</center>
-        </div>
-            
-               
+<table class="table table-bordered table-striped">
+    <tr> 
+        <b>
+      <td width="218" height="38"><div align="center"><b>First Name</b></div></td>
+            <td width="261"><div align="center"><b>Last Name</b></div>
+          </td>
+            <td width="261"><div align="center"><b>Email</b></div>
+          </td>
+            <td width="261"><div align="center"><b>Batch</b></div>
+          </td>
+            <td width="261"><div align="center"><b>Action</b></div>
+          </td>
+     
+            </b>
+      </tr>
+ 
+      <?php
+	  
+	 $date=date("Y-m-d");
+	$st=mysqli_query($conn,"select * from tbl_studreg where tid='0'");
+  $q=mysqli_num_rows($st);
+  if($q>=1)
+  {
+	while($res=mysqli_fetch_array($st))
+	{
+	?>
+    <tr> 
+      <td width="218" height="70"><div align="center"><?php echo $res[2];?></div></td>
       
+      <td width="264"><div align="center"><?php echo $res[3];?></div></td>
+	  <td width="264"><div align="center"><?php echo $res[4];?></div></td>
+	  	  <td width="264"><div align="center"><?php echo $res[5];?></div></td>
 
-  <?php
+	  <td width="249">&nbsp;<?php echo "<a href='assign_code.php?id=$res[0]&st=$s'>ASSIGN</a>";?></td>
+    </tr>
+    <?php
+	}
 }else
 {
-   header("Location:login.php");    
+	?><td colspan="5" align="center">--------------------NO RECORD FOUND-----------------</td>
+
+
+<?php
+
+}?>
+  </table>
+  
+
+</br>
+
+ 
+</form>
+
+</body>
+</html>
+<?php
 }
-               
-//}
-               ?>
+    
+    else
+{
+    header("Location:login.php");    
+}
+    ?>
